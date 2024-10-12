@@ -8,7 +8,8 @@
         "build": "sass src/scss:dist/css",
         "start": "sass --watch src/scss:dist/css & live-server",
         "format": "prettier -w '**/*.{html,js,json,scss}'",
-        "lint": "eslint **/*.js"
+        "lint": "eslint **/*.js",
+        "_lint-fix": "eslint **/*.js --cache --fix"
     },
     "keywords": [],
     "author": "Noroff",
