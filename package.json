@@ -1,6 +1,6 @@
 {
     "name": "fed2-workflow-ca",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Workflow CA",
     "main": "index.js",
     "type": "module",
