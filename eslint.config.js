@@ -1,6 +1,7 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
 import pluginJest from "eslint-plugin-jest"; // Import the Jest plugin
+import pluginCypress from "eslint-plugin-cypress";
 
 export default [
     {
@@ -24,6 +25,22 @@ export default [
         rules: {
             ...pluginJest.configs.recommended.rules, // Extend Jest recommended rules
             "jest/prefer-expect-assertions": "off", // Custom Jest rule
+        },
+    },
+    {
+        files: ["**/*.cy.js"], // Target Cypress test files
+        languageOptions: {
+            globals: {
+                "cypress/globals": true, // Set Cypress environment
+            },
+        },
+        plugins: {
+            cypress: pluginCypress, // Add Cypress plugin
+        },
+        rules: {
+            ...pluginCypress.configs.recommended.rules, // Extend Cypress recommended rules
+            "cypress/no-unnecessary-waiting": "off", // Custom Cypress rule
+            "no-unused-vars": "off", // Turn off no-unused-vars rule for Cypress files
         },
     },
 ];
