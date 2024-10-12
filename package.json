@@ -1,7 +1,7 @@
 {
-  "name": "css-frameworks-ca",
-  "version": "1.0.0",
-  "description": "Test",
+  "name": "fed2-workflow-ca",
+  "version": "0.0.1",
+  "description": "Workflow CA",
   "main": "index.js",
   "scripts": {
     "build": "sass src/scss:dist/css",
