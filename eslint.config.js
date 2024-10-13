@@ -7,48 +7,48 @@ export default [
     {
         languageOptions: {
             globals: {
-                ...globals.browser, // Set browser environment
-                ...globals.node, // Set Node.js environment
+                ...globals.browser,
+                ...globals.node,
             },
-            ecmaVersion: "latest", // Equivalent to es2021
-            sourceType: "module", // Use ES modules
+            ecmaVersion: "latest",
+            sourceType: "module",
         },
     },
     pluginJs.configs.recommended, // Equivalent to "extends": "eslint:recommended"
     {
-        files: ["**/*.test.js"], // Target Jest test files
+        files: ["**/*.test.js"],
         languageOptions: {
-            globals: globals.jest, // Set Jest environment
+            globals: globals.jest,
         },
         plugins: {
-            jest: pluginJest, // Add Jest plugin
+            jest: pluginJest,
         },
         rules: {
-            ...pluginJest.configs.recommended.rules, // Extend Jest recommended rules
-            "jest/prefer-expect-assertions": "off", // Custom Jest rule
+            ...pluginJest.configs.recommended.rules,
+            "jest/prefer-expect-assertions": "off",
         },
     },
     {
-        files: ["**/*.cy.js"], // Target Cypress test files
+        files: ["**/*.cy.js"],
         languageOptions: {
             globals: {
-                ...globals.cypress, // Set Cypress environment
+                ...globals.cypress,
             },
         },
         plugins: {
-            cypress: pluginCypress, // Add Cypress plugin
+            cypress: pluginCypress,
         },
         rules: {
-            ...pluginCypress.configs.recommended.rules, // Extend Cypress recommended rules
-            "cypress/no-unnecessary-waiting": "off", // Custom Cypress rule
-            "no-unused-vars": "off", // Turn off no-unused-vars rule for Cypress files
-            "no-undef": "off", // Disable undefined variable checks for Cypress globals
+            ...pluginCypress.configs.recommended.rules,
+            "cypress/no-unnecessary-waiting": "off",
+            "no-unused-vars": "off",
+            "no-undef": "off",
         },
     },
     {
-        files: ["cypress.config.js"], // Specifically target the Cypress config file
+        files: ["cypress.config.js"],
         rules: {
-            "no-unused-vars": "off", // Turn off no-unused-vars for Cypress config
+            "no-unused-vars": "off",
         },
     },
 ];
