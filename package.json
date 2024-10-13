@@ -9,7 +9,7 @@
         "start": "sass --watch src/scss:dist/css & live-server",
         "format": "prettier -w '**/*.{html,js,json,scss}'",
         "lint": "eslint **/*.js",
-        "lint-fix": "eslint src/**/*.js --cache --fix",
+        "lint-fix": "eslint *.js src/**/*.js cypress/**/*.js --cache --fix",
         "prepare": "husky install",
         "test-unit": "npm run test-unit-jest",
         "test-unit-jest": "jest",
@@ -50,6 +50,7 @@
     "homepage": "https://github.com/EliNygard/fed2-wf-ca-social-media-client#readme",
     "lint-staged": {
         "*.js": "eslint --fix",
+        "*.cy.js": "eslint --fix",
         "*.{html,js,json,scss}": "prettier --write"
     }
 }
