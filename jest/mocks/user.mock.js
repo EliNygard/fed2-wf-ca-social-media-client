@@ -9,3 +9,9 @@ export const userData = {
   password: password,
   accessToken: accessToken,
 };
+
+export const authResponse = {
+  name: name,
+  email: email,
+  accessToken: accessToken,
+};
