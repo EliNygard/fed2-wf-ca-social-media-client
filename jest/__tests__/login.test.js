@@ -15,13 +15,11 @@ const user = () => ({
     ...mocks.mockUserProfile,
 });
 
-// create a mock:
+// create a mock file:
 const mockLoginFetchSuccess = jest.fn().mockResolvedValue({
     ok: true,
     json: jest.fn().mockResolvedValue(user),
 });
-
-// move to before each?
 
 describe("login function", () => {
     beforeEach(() => {
@@ -33,11 +31,16 @@ describe("login function", () => {
 
     afterEach(() => {
         localStorage.clear();
-        // global.fetch.mockClear()
+        fetch.mockClear();
     });
 
     it("Stores a token when provided with valid credentials", async () => {
+        console.log("Before login, token:", localStorage.getItem("token"));
+
         await login(user.email, user.password);
+
+        console.log("After login, token:", localStorage.getItem("token"));
+        console.log(user.accessToken);
 
         expect(save).toHaveBeenCalledWith("token", user.accessToken);
         // expect(save("token")).toBe(mockUserProfile.accessToken)
