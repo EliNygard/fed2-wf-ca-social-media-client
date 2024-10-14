@@ -22,11 +22,11 @@ const mockLoginFetchSuccess = jest.fn().mockResolvedValue({
 });
 
 // move to before each?
-global.fetch = mockLoginFetchSuccess;
-global.localStorage = mocks.localStorageMock();
 
 describe("login function", () => {
     beforeEach(() => {
+        global.fetch = mockLoginFetchSuccess;
+        global.localStorage = mocks.localStorageMock();
         jest.clearAllMocks();
         // add global.fetch here with imported mock fetch
     });
