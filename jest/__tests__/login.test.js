@@ -1,6 +1,6 @@
 import { login } from "../../src/js/api/auth/login.js";
 import { save } from "../../src/js/storage/index.js";
-import * as mock from "../mocks/index.js";
+import * as mocks from "../mocks/index.js";
 
 jest.mock("../../src/js/storage/index.js", () => ({
     save: jest.fn(),
@@ -12,7 +12,7 @@ jest.mock("../../src/js/api/headers.js", () => ({
 }));
 
 const user = () => ({
-    ...mock.mockUserProfile,
+    ...mocks.mockUserProfile,
 });
 
 // create a mock:
@@ -31,7 +31,7 @@ describe("login function", () => {
     });
 
     afterEach(() => {
-        mock.clear;
+        mocks.clear;
         // global.fetch.mockClear()
     });
 

@@ -1,6 +1,3 @@
-// before check local storage if token exist/get token from local storage
-// The logout function clears the token from browser storage
-
 import { logout } from "../../src/js/api/auth/logout";
 import * as mocks from "../mocks/index.js";
 
@@ -10,7 +7,6 @@ describe("logout function", () => {
     });
 
     afterEach(() => {
-        // clear mocks?
         localStorage.clear();
     });
 
