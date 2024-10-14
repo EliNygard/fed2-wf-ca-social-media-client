@@ -1,3 +1,3 @@
 export * from './localStorage.mock';
-export * from './fetchComplicated.mock';
+export * from './fetch.mock';
 export * from './user.mock';
