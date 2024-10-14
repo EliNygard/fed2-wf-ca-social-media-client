@@ -1,10 +1,9 @@
-// create a mock:
-const name = 'TestUser';
+const name = 'Test User';
 const email = 'test@stud.noroff.no';
 const password = 'passwordTest123';
-const accessToken = 'tokenTest';
+export const accessToken = 'tokenTest';
 
-export const userProfileMock = {
+export const userData = {
   name: name,
   email: email,
   password: password,
