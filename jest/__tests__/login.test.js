@@ -1,51 +1,85 @@
 import { login } from "../../src/js/api/auth/login.js";
-import { load } from "../../src/js/storage/";
+import { save } from "../../src/js/storage/";
 import * as mocks from "../mocks/index.js";
 
-jest.mock("../../src/js/storage/index.js", () => ({
+jest.mock("../../src/js/storage", () => ({
   save: jest.fn(),
-  load: jest.fn(),
 }));
 
 jest.mock("../../src/js/api/headers.js", () => ({
   headers: jest.fn(),
 }));
 
-const user = () => ({
-  ...mocks.mockUserProfile,
-});
+const email = "test@stud.noroff.no";
+const password = "testPasswordForJest";
+const accessToken = "mockAccessTokenForTesting";
 
-// create a mock file:
+const mockUserProfile = {
+  email: email,
+  password: password,
+  accessToken: accessToken,
+};
+
 const mockLoginFetchSuccess = jest.fn().mockResolvedValue({
   ok: true,
-  json: jest.fn().mockResolvedValue(user),
+  json: jest.fn().mockResolvedValue(mockUserProfile),
 });
 
-describe("login function", () => {
+global.fetch = mockLoginFetchSuccess;
+
+describe("login", () => {
   beforeEach(() => {
-    global.fetch = mockLoginFetchSuccess;
-    global.localStorage = mocks.localStorageMock();
     jest.clearAllMocks();
-    // add global.fetch here with imported mock fetch
   });
 
-  afterEach(() => {
-    localStorage.clear();
-    fetch.mockClear();
-  });
+  it("stores a token when provided with valid credentials", async () => {
+    console.log(mockUserProfile);
+    console.log("Before login, token: ", accessToken);
 
-  it("Stores a token when provided with valid credentials", async () => {
-    console.log("Before login, token:", localStorage.getItem("token"));
+    await login(email, password);
+    console.log("After login, token: ", accessToken);
+    console.log(mockUserProfile);
 
-    await login(user.email, user.password);
-
-    console.log("After login, token:", localStorage.getItem("token"));
-    console.log(user.accessToken);
-
-    // expect(save).toHaveBeenCalledWith("token", user.accessToken);
-    expect(load("token")).toBe(mocks.accessToken);
+    expect(save).toHaveBeenCalledWith("token", accessToken);
+    expect(save).toHaveBeenCalledWith("profile", mockUserProfile);
   });
 });
+
+// const user = () => ({
+//   ...mocks.mockUserProfile,
+// });
+
+// // create a mock file:
+// const mockLoginFetchSuccess = jest.fn().mockResolvedValue({
+//   ok: true,
+//   json: jest.fn().mockResolvedValue(user),
+// });
+
+// describe("login function", () => {
+//   beforeEach(() => {
+//     global.fetch = mockLoginFetchSuccess;
+//     global.localStorage = mocks.localStorageMock();
+//     jest.clearAllMocks();
+//     // add global.fetch here with imported mock fetch
+//   });
+
+//   afterEach(() => {
+//     localStorage.clear();
+//     fetch.mockClear();
+//   });
+
+//   it("Stores a token when provided with valid credentials", async () => {
+//     console.log("Before login, token:", localStorage.getItem("token"));
+
+//     await login(user.email, user.password);
+
+//     console.log("After login, token:", localStorage.getItem("token"));
+//     console.log(user.accessToken);
+
+//     // expect(save).toHaveBeenCalledWith("token", user.accessToken);
+//     expect(load("token")).toBe(mocks.accessToken);
+//   });
+// });
 
 //console.log("Before login, token:", localStorage.getItem("token")); // this must be correct because user is not logged in yet
 //console.log(user()); // mock user with accessToken: tokenTest
