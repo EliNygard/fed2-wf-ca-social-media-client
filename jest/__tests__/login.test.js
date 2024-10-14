@@ -1,18 +1,18 @@
-import { login } from "../../src/js/api/auth/login.js";
-import { save } from "../../src/js/storage/";
-import * as mocks from "../mocks/index.js";
+import { login } from '../../src/js/api/auth/login.js';
+import { save } from '../../src/js/storage/';
+import * as mocks from '../mocks/index.js';
 
-jest.mock("../../src/js/storage", () => ({
+jest.mock('../../src/js/storage', () => ({
   save: jest.fn(),
 }));
 
-jest.mock("../../src/js/api/headers.js", () => ({
+jest.mock('../../src/js/api/headers.js', () => ({
   headers: jest.fn(),
 }));
 
-const email = "test@stud.noroff.no";
-const password = "testPasswordForJest";
-const accessToken = "mockAccessTokenForTesting";
+const email = 'test@stud.noroff.no';
+const password = 'testPasswordForJest';
+const accessToken = 'mockAccessTokenForTesting';
 
 const mockUserProfile = {
   email: email,
@@ -25,23 +25,27 @@ const mockLoginFetchSuccess = jest.fn().mockResolvedValue({
   json: jest.fn().mockResolvedValue(mockUserProfile),
 });
 
-global.fetch = mockLoginFetchSuccess;
-
-describe("login", () => {
+describe('login', () => {
   beforeEach(() => {
+    global.localStorage = mocks.localStorageMock();
+    global.fetch = mockLoginFetchSuccess;
     jest.clearAllMocks();
   });
 
-  it("stores a token when provided with valid credentials", async () => {
+  afterEach(() => {
+    // localStorage.clear();
+    fetch.mockClear();
+  });
+
+  it('stores a token when provided with valid credentials', async () => {
     console.log(mockUserProfile);
-    console.log("Before login, token: ", accessToken);
 
     await login(email, password);
-    console.log("After login, token: ", accessToken);
+    console.log('After login, token: ', accessToken);
     console.log(mockUserProfile);
 
-    expect(save).toHaveBeenCalledWith("token", accessToken);
-    expect(save).toHaveBeenCalledWith("profile", mockUserProfile);
+    expect(save).toHaveBeenCalledWith('token', accessToken);
+    expect(save).toHaveBeenCalledWith('profile', mockUserProfile);
   });
 });
 
