@@ -11,7 +11,7 @@ describe('logout function', () => {
   });
 
   it('Clears the token from browser storage', () => {
-    localStorage.setItem('token', mocks.userProfileMock.accessToken);
+    localStorage.setItem('token', mocks.userData.accessToken);
     console.log('Before logout, token:', localStorage.getItem('token'));
 
     logout();
