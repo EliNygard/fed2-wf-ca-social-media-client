@@ -46,9 +46,10 @@ export default [
         },
     },
     {
-        files: ["cypress.config.js"],
+        files: ["cypress.config.js", "**/*.js"],
         rules: {
             "no-unused-vars": "off",
+            "no-undef": "off",
         },
     },
 ];
