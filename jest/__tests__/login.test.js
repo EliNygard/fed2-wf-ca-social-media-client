@@ -1,20 +1,23 @@
 import { login } from '../../src/js/api/auth/login.js';
-import { save } from '../../src/js/storage/';
+import { load, save } from '../../src/js/storage/';
 import * as mocks from '../mocks/index.js';
 
 jest.mock('../../src/js/storage', () => ({
   save: jest.fn(),
+  load: jest.fn(),
 }));
 
 jest.mock('../../src/js/api/headers.js', () => ({
   headers: jest.fn(),
 }));
 
+const name = 'Test User';
 const email = 'test@stud.noroff.no';
 const password = 'testPasswordForJest';
 const accessToken = 'mockAccessTokenForTesting';
 
 const mockUserProfile = {
+  name: name,
   email: email,
   password: password,
   accessToken: accessToken,
@@ -25,7 +28,7 @@ const mockLoginFetchSuccess = jest.fn().mockResolvedValue({
   json: jest.fn().mockResolvedValue(mockUserProfile),
 });
 
-describe('login', () => {
+describe('login function', () => {
   beforeEach(() => {
     global.localStorage = mocks.localStorageMock();
     global.fetch = mockLoginFetchSuccess;
@@ -33,18 +36,27 @@ describe('login', () => {
   });
 
   afterEach(() => {
-    // localStorage.clear();
+    localStorage.clear();
     fetch.mockClear();
   });
 
   it('stores a token when provided with valid credentials', async () => {
-    console.log(mockUserProfile);
-
     await login(email, password);
-    console.log('After login, token: ', accessToken);
-    console.log(mockUserProfile);
 
+    // Check that the save function is called with 'token' and the accessToken
     expect(save).toHaveBeenCalledWith('token', accessToken);
+
+    // Check that the save function is called with 'profile' and the user profile without accessToken
+    // expect(save).toHaveBeenCalledWith('profile', expect.toMatchObject({
+    //   email: email,
+    //   name: name,
+    // }));
+
+    // Check the specific token stored in localStorage
+    expect(load('token')).toBe(mockUserProfile.accessToken);
+
+    console.log(localStorage.getItem('token')); // why null? It works in logout
+
     expect(save).toHaveBeenCalledWith('profile', mockUserProfile);
   });
 });
