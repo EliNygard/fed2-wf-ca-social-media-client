@@ -1,5 +1,5 @@
-import { logout } from '../../src/js/api/auth/logout';
-import * as mocks from '../mocks/index.js';
+import { logout } from '../../src/js/api/auth/logout.js';
+import * as mocks from '../../src/js/mocks/index.js';
 
 describe('logout function', () => {
   beforeEach(() => {

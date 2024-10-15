@@ -1,6 +1,6 @@
 import { login } from '../../src/js/api/auth/login.js';
-import { load } from '../../src/js/storage/';
-import * as mocks from '../mocks/index.js';
+import { load } from '../../src/js/storage/index.js';
+import * as mocks from '../../src/js/mocks/index.js';
 
 jest.mock('../../src/js/storage', () => ({
   save: jest.fn(),
@@ -11,15 +11,9 @@ jest.mock('../../src/js/api/headers.js', () => ({
   headers: jest.fn(),
 }));
 
-const mockLoginFetchSuccess = jest.fn().mockResolvedValue({
-  ok: true,
-  json: jest.fn().mockResolvedValue(mocks.userData),
-});
-
 describe('login function', () => {
   beforeEach(() => {
     global.localStorage = mocks.localStorageMock();
-    global.fetch = mockLoginFetchSuccess;
     jest.clearAllMocks();
   });
 
@@ -29,7 +23,11 @@ describe('login function', () => {
   });
 
   it('stores a token when provided with valid credentials', async () => {
+    global.fetch = mocks.createMockFetch(mocks.userData, 200);
+
     await login(mocks.userData.email, mocks.userData.password);
+
     expect(load('token')).toBe(mocks.userData.accessToken);
+    expect(fetch).toHaveBeenCalledTimes(1);
   });
 });
