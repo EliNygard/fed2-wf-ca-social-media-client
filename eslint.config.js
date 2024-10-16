@@ -1,7 +1,7 @@
-import globals from 'globals';
-import pluginJs from '@eslint/js';
-import pluginJest from 'eslint-plugin-jest';
-import pluginCypress from 'eslint-plugin-cypress';
+import globals from "globals";
+import pluginJs from "@eslint/js";
+import pluginJest from "eslint-plugin-jest";
+import pluginCypress from "eslint-plugin-cypress";
 
 export default [
   {
@@ -10,13 +10,13 @@ export default [
         ...globals.browser,
         ...globals.node,
       },
-      ecmaVersion: 'latest',
-      sourceType: 'module',
+      ecmaVersion: "latest",
+      sourceType: "module",
     },
   },
-  pluginJs.configs.recommended, // Equivalent to "extends": "eslint:recommended"
+  pluginJs.configs.recommended,
   {
-    files: ['**/*.test.js'],
+    files: ["**/*.test.js"],
     languageOptions: {
       globals: globals.jest,
     },
@@ -25,11 +25,11 @@ export default [
     },
     rules: {
       ...pluginJest.configs.recommended.rules,
-      'jest/prefer-expect-assertions': 'off',
+      "jest/prefer-expect-assertions": "off",
     },
   },
   {
-    files: ['**/*.cy.js'],
+    files: ["**/*.cy.js"],
     languageOptions: {
       globals: {
         ...globals.cypress,
@@ -40,16 +40,16 @@ export default [
     },
     rules: {
       ...pluginCypress.configs.recommended.rules,
-      'cypress/no-unnecessary-waiting': 'off',
-      'no-unused-vars': 'off',
-      'no-undef': 'off',
+      "cypress/no-unnecessary-waiting": "off",
+      "no-unused-vars": "off",
+      "no-undef": "off",
     },
   },
   {
-    files: ['cypress.config.js', '**/*.js'],
+    files: ["cypress.config.js", "**/*.js"],
     rules: {
-      'no-unused-vars': 'off',
-      'no-undef': 'off',
+      "no-unused-vars": "off",
+      "no-undef": "off",
     },
   },
 ];
