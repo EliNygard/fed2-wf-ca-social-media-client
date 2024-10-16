@@ -40,7 +40,7 @@ Cypress.Commands.add("login", (email, password) => {
   cy.get("#loginForm").find("button[type=submit]").click();
 });
 
-Cypress.Commands.add("loginWithTestUserWorks", () => {
+Cypress.Commands.add("loginWithTestUser", () => {
   cy.fixture("testUser").then((user) => {
     cy.intercept(
       "POST",
