@@ -16,4 +16,22 @@ describe("Log in function", () => {
     cy.loginWithTestUserWorks();
     cy.isLoggedIn();
   });
+
+  it("should not allow a user to submit the login form with invalid credentials, and the user is then shown a message", () => {
+    cy.showLoginForm();
+
+    cy.get("#loginForm")
+      .find("input[name=email]")
+      .type("invaliduser@example.no");
+    cy.get("#loginForm").find("input[name=password]").type("wrongPassword");
+
+    cy.get("#loginForm").find("button[type=submit]").click();
+
+    cy.get(".error-message")
+      .should("be.visible")
+      .and(
+        "contain",
+        "Either your username was not found or your password is incorrect",
+      );
+  });
 });
