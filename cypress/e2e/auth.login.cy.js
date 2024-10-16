@@ -20,12 +20,7 @@ describe("Log in function", () => {
   it("should not allow a user to login with invalid credentials and is then shown a message", () => {
     cy.showLoginForm();
 
-    cy.get("#loginForm")
-      .find("input[name=email]")
-      .type("invaliduser@example.no");
-    cy.get("#loginForm").find("input[name=password]").type("wrongPassword");
-
-    cy.get("#loginForm").find("button[type=submit]").click();
+    cy.login("invaliduser@example.no", "wrongPassword");
 
     cy.get(".error-message")
       .should("be.visible")
