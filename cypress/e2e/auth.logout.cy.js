@@ -1,17 +1,14 @@
 describe("Logout function", () => {
   beforeEach(() => {
-    cy.visit(
-      "https://elinygard.github.io/fed2-wf-ca-social-media-client/?view=profile&name=TestUser",
-    );
+    cy.visitHome();
+    cy.showLoginForm();
+    cy.loginWithTestUser();
+    cy.isLoggedIn();
   });
 
   it("the user should log out with the log out button", () => {
     cy.get('button[data-auth="logout"]').click();
 
     cy.isLoggedOut();
-    cy.url().should(
-      "eq",
-      "https://elinygard.github.io/fed2-wf-ca-social-media-client/",
-    );
   });
 });

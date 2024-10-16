@@ -29,8 +29,12 @@ Cypress.Commands.add("visitHome", () => {
   cy.wait(500);
 });
 
+Cypress.Commands.add("showRegisterForm", () => {
+  cy.get("#registerForm").should("be.visible");
+});
+
 Cypress.Commands.add("showLoginForm", () => {
-  cy.get("#registerForm").find("button[data-auth=login").click();
+  cy.showRegisterForm().find("button[data-auth=login").click();
   cy.get("#loginForm").should("be.visible");
 });
 
@@ -54,9 +58,9 @@ Cypress.Commands.add("loginWithTestUser", () => {
       },
     ).as("loginRequest");
 
-    // const testPassword = Cypress.env("password");
+    const testPassword = Cypress.env("password");
 
-    cy.login(user.email, "testPassword");
+    cy.login(user.email, testPassword);
 
     cy.wait("@loginRequest").its("response.statusCode").should("eq", 200);
     cy.url().should("include", "profile");
