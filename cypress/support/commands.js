@@ -54,6 +54,9 @@ Cypress.Commands.add("loginWithTestUserWorks", () => {
       },
     ).as("loginRequest");
 
+    const password = Cypress.env("password");
+    console.log(password);
+
     // cy.login(user.email, Cypress.env("password"));
     cy.login(user.email, "password1234");
 
