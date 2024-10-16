@@ -55,6 +55,7 @@ Cypress.Commands.add("loginWithTestUserWorks", () => {
     ).as("loginRequest");
 
     cy.login(user.email, Cypress.env("password"));
+    // cy.login(user.email, "password1234");
 
     cy.wait("@loginRequest").its("response.statusCode").should("eq", 200);
     cy.url().should("include", "profile");
