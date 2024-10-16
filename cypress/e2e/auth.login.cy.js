@@ -17,7 +17,7 @@ describe("Log in function", () => {
     cy.isLoggedIn();
   });
 
-  it("should not allow a user to submit the login form with invalid credentials, and the user is then shown a message", () => {
+  it("should not allow a user to login with invalid credentials and is then shown a message", () => {
     cy.showLoginForm();
 
     cy.get("#loginForm")
