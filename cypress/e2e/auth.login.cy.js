@@ -1,4 +1,4 @@
-describe("Log in function", () => {
+describe("Log in functions", () => {
   beforeEach(() => {
     cy.visitHome();
   });
