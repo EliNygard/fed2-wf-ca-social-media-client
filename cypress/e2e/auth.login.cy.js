@@ -5,7 +5,7 @@ describe("Login function", () => {
 
   it("should allow a valid, registered user to log in with the login form", () => {
     cy.showLoginForm();
-    cy.loginWithTestUser();
+    cy.loginTestUser();
     cy.isLoggedIn();
   });
 

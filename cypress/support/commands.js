@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add("visitHome", () => {
-  cy.visit("https://elinygard.github.io/fed2-wf-ca-social-media-client/");
+  cy.visit("/");
   cy.wait(500);
 });
 
@@ -44,7 +44,7 @@ Cypress.Commands.add("login", (email, password) => {
   cy.get("#loginForm").find("button[type=submit]").click();
 });
 
-Cypress.Commands.add("loginWithTestUser", () => {
+Cypress.Commands.add("loginTestUser", () => {
   cy.fixture("testUser").then((user) => {
     cy.intercept(
       "POST",
