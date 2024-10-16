@@ -1,9 +1,7 @@
 {
   "username": "TestUser",
   "email": "testuser@stud.noroff.no",
-  "password": "password1234",
   "body": "Fixtures are a great way to mock data for responses to routes",
   "avatar": "",
-  "banner": "",
-  "accessToken": "testAccessToken"
+  "banner": ""
 }
