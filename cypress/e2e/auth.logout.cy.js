@@ -5,7 +5,7 @@ describe("Logout function", () => {
 
   it("the user should log out with the log out button", () => {
     cy.showLoginForm();
-    cy.loginWithTestUser();
+    cy.loginTestUser();
     cy.isLoggedIn();
     cy.get("button[data-auth=logout]").click();
 
