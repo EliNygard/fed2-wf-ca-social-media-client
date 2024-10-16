@@ -29,8 +29,12 @@ Cypress.Commands.add("visitHome", () => {
   cy.wait(500);
 });
 
+Cypress.Commands.add("showRegisterForm", () => {
+  cy.get("#registerForm").should("be.visible");
+});
+
 Cypress.Commands.add("showLoginForm", () => {
-  cy.get("#registerForm").find("button[data-auth=login").click();
+  cy.showRegisterForm().find("button[data-auth=login").click();
   cy.get("#loginForm").should("be.visible");
 });
 
