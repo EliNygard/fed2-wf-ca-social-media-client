@@ -2,7 +2,7 @@
 ##### Delivery: October 2024
 
 The goal of the CA is to practice quality assurance of the existing social media app repository, forked from NoroffFEU. 
-This has been done by configuring tools, creating workflows and defining tests that improve the efficiency of the development process..
+This has been done by configuring tools, creating workflows and defining tests that improve the efficiency of the development process.
 
 ##### Steps in the process
 - Setting up workflow and development tools
