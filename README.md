@@ -25,8 +25,9 @@ This has been done by configuring tools, creating workflows and defining tests t
   - The user cannot submit the login form with invalid credentials and is shown a message
   - The user can log out with the logout button
 
-### Automated tests
 
 [![Automated E2E Testing](https://github.com/EliNygard/fed2-wf-ca-social-media-client/actions/workflows/e2e-test.yml/badge.svg)](https://github.com/EliNygard/fed2-wf-ca-social-media-client/actions/workflows/e2e-test.yml)
 
 [![Automated Unit Testing](https://github.com/EliNygard/fed2-wf-ca-social-media-client/actions/workflows/unit-test.yml/badge.svg)](https://github.com/EliNygard/fed2-wf-ca-social-media-client/actions/workflows/unit-test.yml)
+
+[![pages-build-deployment](https://github.com/EliNygard/fed2-wf-ca-social-media-client/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/EliNygard/fed2-wf-ca-social-media-client/actions/workflows/pages/pages-build-deployment)
