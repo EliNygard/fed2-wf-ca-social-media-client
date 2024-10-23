@@ -3,5 +3,7 @@
   "tabWidth": 2,
   "semi": true,
   "useTabs": false,
-  "bracketSpacing": true
+  "bracketSpacing": true,
+  "printWidth": 120,
+  "htmlWhitespaceSensitivity": "ignore"
 }
